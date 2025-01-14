@@ -66,4 +66,7 @@ window.n = (offset: number) => {
   database[box].splice(currentCard, 1)
   localStorage.setItem("db", JSON.stringify(database))
   showCard(currentCard + 1)
+  if (currentCard >= database[box].length) {
+    confirm(`End of box ${box + 1}. Restart?`) && location.reload()
+  }
 }
