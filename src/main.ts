@@ -43,24 +43,15 @@ window.s = () => {
   $("p").textContent = database[box][currentCard][1]
 }
 
-// @ts-ignore
-window.y = () => {
-  // Callback for the checkmark button
-  // We move the card up to the next box
-  database[box + 1].push(database[box][currentCard])
-  nextCard()
-}
-
-// @ts-ignore
-window.n = () => {
-  // Callback for the red X button
-  // We move the card all the way down to box 1
-  database[0].push(database[box][currentCard])
-  nextCard()
+// @ts-ignore `n` for "next card"
+window.n = (offset: number) => {
+  // Callback for the red X and checkmark buttons
+  // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
+  database[(box + offset) * offset].push(database[box][currentCard])
+  database[box].splice(currentCard, 1)
+  showCard(currentCard + 1)
 }
 
 const nextCard = () => {
   // Remove the current card, because this is always called from the checkmark/X buttons
-  database[box].splice(currentCard, 1)
-  showCard(currentCard + 1)
 }
