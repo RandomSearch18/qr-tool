@@ -1,10 +1,8 @@
 // @ts-ignore
-c = () =>
-  navigator.bluetooth
-    .requestDevice({ filters: [{ services: ["battery_service"] }] })
-    .then((device) => {
-      console.log(device)
+window.c = () => {
+  navigator.mediaDevices
+    .getUserMedia({ video: true, audio: false })
+    .then((s) => {
+      document.querySelector("video").srcObject = s
     })
-    .catch((error) => {
-      console.error(error)
-    })
+}
