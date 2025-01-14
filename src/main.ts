@@ -20,8 +20,11 @@ let currentCard: number
 const showCard = (i: number): 0 | undefined => {
   // Bug: If the view is changed to an empty box, but there's already a card being shown, that old card won't be cleared.
   // (a workaround is to refresh the page)
-  if (!database[box][i]) return 0
   $("h2").textContent = `Box ${box + 1}: Card ${i + 1}/${database[box].length}`
+  if (!database[box][i]) {
+    $("p").textContent = "Empty box"
+    return 0
+  }
   $("p").textContent = database[box][i][0]
   currentCard = i
 }
@@ -29,8 +32,8 @@ const showCard = (i: number): 0 | undefined => {
 // @ts-ignore `b` for "box dropdown changed"
 window.b = () => {
   box = parseInt($<HTMLSelectElement>("select").value) - 1
-  // If there are cards in the box, show the first one & ensure that the current card elements are visible
-  showCard(0) ?? $("a").removeAttribute("hidden")
+  // If there are cards in the box, show the first one
+  showCard(0)
 }
 
 // We show the first card in the box that happens to be selected on page load (which is normally box 1, unless the browser is filling it from a previous page load)
@@ -62,5 +65,6 @@ window.n = (offset: number) => {
     database[box][currentCard]
   )
   database[box].splice(currentCard, 1)
+  localStorage.setItem("db", JSON.stringify(database))
   showCard(currentCard + 1)
 }
