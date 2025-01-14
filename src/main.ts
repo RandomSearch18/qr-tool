@@ -5,8 +5,11 @@ const $ = <T extends Element>(selector: string) =>
 const $$ = <T extends Element>(selector: string) =>
   document.querySelectorAll<T>(selector)
 
-const database: Card[] = JSON.parse(localStorage.getItem("db") || "[]")
+const database: Card[][] = JSON.parse(
+  localStorage.getItem("db") || "[[],[],[]]"
+)
 
+let box = 0
 let currentCard: number
 
 /**
@@ -15,9 +18,9 @@ let currentCard: number
  * @returns `undefined` if the card **was** shown without any errors, or `0` if the card doesn't exist
  */
 const showCard = (i: number): 0 | undefined => {
-  if (!database[i]) return 0
-  $("h2").textContent = `Card ${i + 1}/${database.length}`
-  $("p").textContent = database[i][0]
+  if (!database[box][i]) return 0
+  $("h2").textContent = `Box ${box + 1}: Card ${i + 1}/${database.length}`
+  $("p").textContent = database[box][i][0]
   currentCard = i
 }
 
@@ -29,7 +32,7 @@ window.n = () => {
   // Callback for when the "+" (add card) button is clicked
   const question = $<HTMLTextAreaElement>("#q").value
   const answer = $<HTMLTextAreaElement>("#a").value
-  database.push([question, answer])
+  database[box].push([question, answer])
   localStorage.setItem("db", JSON.stringify(database))
   location.reload()
 }
@@ -37,11 +40,27 @@ window.n = () => {
 // @ts-ignore
 window.s = () => {
   // Callback for when the "Show" (show answer) button is clicked
-  $("p").textContent = database[currentCard][1]
+  $("p").textContent = database[box][currentCard][1]
 }
 
 // @ts-ignore
 window.y = () => {
   // Callback for the checkmark button
-  database.splice(currentCard, 1)
+  // We move the card up to the next box
+  database[box + 1].push(database[box][currentCard])
+  nextCard()
+}
+
+// @ts-ignore
+window.n = () => {
+  // Callback for the red X button
+  // We move the card all the way down to box 1
+  database[0].push(database[box][currentCard])
+  nextCard()
+}
+
+const nextCard = () => {
+  // Remove the current card, because this is always called from the checkmark/X buttons
+  database[box].splice(currentCard, 1)
+  showCard(currentCard + 1)
 }
