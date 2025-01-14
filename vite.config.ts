@@ -13,13 +13,13 @@ export default defineConfig({
     createHtmlPlugin({
       minify: true,
     }),
-    basicSsl(),
+    // basicSsl(),
   ],
   build: {
     cssCodeSplit: false,
     assetsInlineLimit: Infinity,
   },
   server: {
-    https: true,
+    // https: true,
   },
 })
