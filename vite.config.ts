@@ -7,9 +7,9 @@ export default defineConfig({
     viteSingleFile({
       removeViteModuleLoader: true,
     }),
-    // createHtmlPlugin({
-    //   minify: true,
-    // }),
+    createHtmlPlugin({
+      minify: true,
+    }),
   ],
   build: {
     cssCodeSplit: false,
