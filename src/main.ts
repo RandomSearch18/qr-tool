@@ -18,8 +18,7 @@ let currentCard: number
  * @returns `undefined` if the card **was** shown without any errors, or `0` if the card doesn't exist
  */
 const showCard = (i: number): 0 | undefined => {
-  // Bug: If the view is changed to an empty box, but there's already a card being shown, that old card won't be cleared.
-  // (a workaround is to refresh the page)
+  // Bug: The case of currentCard > database[box].length isn't handled
   $("h2").textContent = `Box ${box + 1}: Card ${i + 1}/${database[box].length}`
   if (!database[box][i]) {
     $("p").textContent = "Empty box"
