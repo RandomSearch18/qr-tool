@@ -45,7 +45,7 @@ window.p = () => {
   // Callback for when the "+" (add card) button is clicked
   const question = $<HTMLTextAreaElement>("#q").value
   const answer = $<HTMLTextAreaElement>("#a").value
-  database[box].push([question, answer])
+  database[0].push([question, answer])
   localStorage.setItem("db", JSON.stringify(database))
   location.reload()
 }
