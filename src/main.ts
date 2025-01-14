@@ -47,11 +47,10 @@ window.s = () => {
 window.n = (offset: number) => {
   // Callback for the red X and checkmark buttons
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
-  database[(box + offset) * offset].push(database[box][currentCard])
+  // If card is in the last box (index 2), keep it in there
+  database[box == 2 ? (box + offset) * offset : 3].push(
+    database[box][currentCard]
+  )
   database[box].splice(currentCard, 1)
   showCard(currentCard + 1)
-}
-
-const nextCard = () => {
-  // Remove the current card, because this is always called from the checkmark/X buttons
 }
