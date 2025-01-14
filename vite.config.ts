@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [
     viteSingleFile({
       removeViteModuleLoader: true,
+      useRecommendedBuildConfig: true,
+      inlinePattern: [],
     }),
     createHtmlPlugin({
       minify: true,

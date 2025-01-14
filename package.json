@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/web-bluetooth": "^0.0.20",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",
     "vite-plugin-html": "^3.2.2",
