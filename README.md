@@ -4,7 +4,19 @@
 
 This is a basic flashcards app, that supports the Leitner system, and is built to be small enough that all of its code fits within a single QR code.
 
+This project was made for a Hack Club project called [Say Cheese!](https://saycheese.hackclub.com/). If you're a teenager who likes to code, you should definitely take a look at what Hack Club does.
+
 As of 2025-01-15, the minified `index.html` file (which contains all the resources needed to run the app) is 969 bytes.
+
+## Run the app
+
+Simply scan the QR code below and open the `data:` URL that appears :D
+
+![QR code for running the app](qr-2025-01-15.png)
+
+### Boring method for running the app
+
+If you insist on running the app without a QR code, you can use it online by visiting <https://mish-qr.netlify.app/>
 
 ## Usage guide
 
@@ -53,3 +65,20 @@ Here's some of the fun features of this code, all done in the name of minimising
   - May or may not have made debugging a pain...
 - 🎉 A variable called `$`!
   - You can think of it like jQuery, but without the jQuery
+
+## Build guide
+
+These steps are manual for now.
+
+1. Run `yarn build`
+2. Take contents of the HTML file in `dist/index.html` and transform it into a data URI:
+
+```js
+const html = "<paste code here, or load it from a file maybe>"
+// Encode any problematic characters. None of these are actually in the code at the moment, but it's good practice:
+const encodedHtml = html.replaceAll("%", "%25").replaceAll("#", "%23")
+const dataUri = "data:text/html," + encodedHtml
+console.log(dataUri)
+```
+
+3. Create a QR code image, e.g. with the `qrencode` command line tool, e.g. `qrencode -o ~/Downloads/qr-flashcards.png '<paste data uri here>'`
