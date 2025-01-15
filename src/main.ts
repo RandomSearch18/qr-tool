@@ -60,7 +60,7 @@ window.n = (offset: number) => {
   // Callback for the red X and checkmark buttons
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
   // If card is in the last box (index 2), keep it in there
-  database[box == 2 ? 2 : (box + offset) * offset].push(
+  database[Math.min((box + offset) * offset, 2)].push(
     database[box][currentCard]
   )
   database[box].splice(currentCard, 1)
