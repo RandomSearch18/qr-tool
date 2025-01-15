@@ -10,23 +10,18 @@ const database: Card[][] = JSON.parse(
 )
 
 let box = 0
-let currentCard: number
 
 /**
- * Render the next card (database[currentCard + 1]), and updates `currentCard`
+ * Render the first card in the current box
  * @returns `undefined` if the card **was** shown without any errors, or `0` if the card doesn't exist
  */
-const nextCard = (doIncrement = 1): 0 | undefined => {
-  // Note: The case of currentCard > database[box].length (i.e. end of box) is handled in self.n()
-  // doIncrement && currentCard++
-  $("h2").textContent = `Box ${box + 1}: Card ${currentCard + 1}/${
-    database[box].length
-  }`
-  if (!database[box][currentCard]) {
+const renderCard = (): 0 | undefined => {
+  $("h2").textContent = `Box ${box + 1} (${database[box].length} cards)`
+  if (!database[box][0]) {
     $("p").textContent = "Empty box"
     return 0
   }
-  $("p").textContent = database[box][currentCard][0]
+  $("p").textContent = database[box][0][0]
 }
 
 // @ts-ignore `b` for "box dropdown changed"
@@ -34,8 +29,7 @@ self.b = () => {
   box = parseInt($<HTMLSelectElement>("select").value) - 1
   // If there are cards in the box, show the first one
   // -1 so that when we first call showCard, it'll increment snowCard and show the first card
-  currentCard = 0
-  nextCard()
+  renderCard()
 }
 
 // We show the first card in the box that happens to be selected on page load (which is normally box 1, unless the browser is filling it from a previous page load)
@@ -55,7 +49,7 @@ self.p = () => {
 // @ts-ignore
 self.s = () => {
   // Callback for when the "Show" (show answer) button is clicked
-  $("p").textContent = database[box][currentCard][1]
+  $("p").textContent = database[box][0][1]
 }
 
 // @ts-ignore `n` for "next card"
@@ -64,11 +58,11 @@ self.n = (offset: number) => {
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
   // If card is in the last box (index 2), keep it in there
   const newBox = Math.min((box + offset) * offset, 2)
-  database[newBox].push(database[box][currentCard])
-  database[box].splice(currentCard, 1)
+  database[newBox].push(database[box][0])
+  database[box].shift()
   localStorage.setItem("db", JSON.stringify(database))
-  const cardOffset = nextCard(newBox - box) ?? -1
-  if (currentCard + 1 + cardOffset >= database[box].length) {
+  const cardOffset = renderCard() ?? -1
+  if (1 + cardOffset >= database[box].length) {
     confirm(`End of box ${box + 1}. Restart?`) && location.reload()
   }
 }
