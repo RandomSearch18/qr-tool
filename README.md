@@ -10,7 +10,7 @@ As of 2025-01-15, the minified `index.html` file (which contains all the resourc
 
 ## Run the app
 
-Simply scan the QR code below and open the `data:` URL that appears :D
+Need to get some revision done on the go? Simply scan the QR code below and open the `data:` URL that appears :D
 
 ![QR code for running the app](qr-2025-01-15.png)
 
