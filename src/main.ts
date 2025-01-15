@@ -16,9 +16,9 @@ let currentCard: number
  * Render the next card (database[currentCard + 1]), and updates `currentCard`
  * @returns `undefined` if the card **was** shown without any errors, or `0` if the card doesn't exist
  */
-const nextCard = (): 0 | undefined => {
+const nextCard = (doIncrement = 1): 0 | undefined => {
   // Note: The case of currentCard > database[box].length (i.e. end of box) is handled in self.n()
-  currentCard++
+  doIncrement && currentCard++
   $("h2").textContent = `Box ${box + 1}: Card ${currentCard + 1}/${
     database[box].length
   }`
@@ -63,12 +63,11 @@ self.n = (offset: number) => {
   // Callback for the red X and checkmark buttons
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
   // If card is in the last box (index 2), keep it in there
-  database[Math.min((box + offset) * offset, 2)].push(
-    database[box][currentCard]
-  )
+  const newBox = Math.min((box + offset) * offset, 2)
+  database[newBox].push(database[box][currentCard])
   database[box].splice(currentCard, 1)
   localStorage.setItem("db", JSON.stringify(database))
-  const cardOffset = nextCard() ?? -1
+  const cardOffset = nextCard(newBox - box) ?? -1
   if (currentCard + 1 + cardOffset >= database[box].length) {
     confirm(`End of box ${box + 1}. Restart?`) && location.reload()
   }
