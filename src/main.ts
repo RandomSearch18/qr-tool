@@ -7,9 +7,7 @@ const database: Card[][] = JSON.parse(
   localStorage.getItem("db") || "[[],[],[]]"
 )
 
-function saveDatabase() {
-  localStorage.setItem("db", JSON.stringify(database))
-}
+const saveDatabase = () => localStorage.setItem("db", JSON.stringify(database))
 
 let box = 0
 
