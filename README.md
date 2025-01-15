@@ -6,7 +6,7 @@ This is a basic flashcards app, that supports the Leitner system, and is built t
 
 This project was made for a Hack Club project called [Say Cheese!](https://saycheese.hackclub.com/). If you're a teenager who likes to code, you should definitely take a look at what Hack Club does.
 
-As of 2025-01-15, the minified `index.html` file (which contains all the resources needed to run the app) is 969 bytes.
+As of 2025-01-15, the minified `index.html` file (which contains all the resources needed to run the app) is 829 bytes.
 
 ## Run the app
 
@@ -24,7 +24,15 @@ If you insist on running the app without a QR code, you can use it online by vis
 
 Start off by adding some flashcards. This can be done in the bottom section of the app (with a 🆕 emoji). Write a question in the first text box, and its answer in the second text box. Then press the "+" button to add your flashcard to the database. This will refresh the page.
 
-You can add flashcards at any time. They are stored in your browser's local storage.
+You can add flashcards at any time.
+
+#### Limitations of flashcard storage
+
+Unfortunately, flashcards aren't stored persistently, so if you refresh the page or come back to it later, your flashcards won't have been saved.
+
+I had originally planned to use the browser `localStorage` to store the flashcards, but that web API isn't accessible from `data:` URLs, which would render the app unusable when run from a QR code.
+
+![JS console that reads: Uncaught SecurityError: Failed to read the 'localStorage' property from 'Window': Storage is disabled inside 'data:' URLs.](sad-chrominum-error.png)
 
 ### Switching boxes
 
@@ -49,7 +57,7 @@ The middle section of the app is where you view flashcards, one at a time. The b
 
 #### At the end of a box
 
-If you've gone through all of the flashcards in a box and emptied it out, an "End of box" popup will show. You can either press "OK" to refresh the page to study another box, or press "Cancel" to keep the empty box selected, after which you can either manually select another box, or finish studying.
+If you've gone through all of the flashcards in a box and emptied it out, an "End of box" popup will show. You can either select another box from the dropdown, or close the page to finish studying (this will delete your flashcards).
 
 ## Screenshots
 
@@ -75,7 +83,7 @@ These steps are manual for now.
 
 ```js
 const html = "<paste code here, or load it from a file maybe>"
-// Encode any problematic characters. None of these are actually in the code at the moment, but it's good practice:
+// Encode any problematic characters:
 const encodedHtml = html.replaceAll("%", "%25").replaceAll("#", "%23")
 const dataUri = "data:text/html," + encodedHtml
 console.log(dataUri)
