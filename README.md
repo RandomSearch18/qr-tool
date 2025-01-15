@@ -1,6 +1,6 @@
 # QR Flashcards
 
-> A tiny (<1KB) Leitner box/flashcards web app
+> A Leitner box/flashcards web app that can entirely fit on a QR code
 
 This is a basic flashcards app, that supports the Leitner system, and is built to be small enough that all of its code fits within a single QR code.
 
@@ -90,3 +90,21 @@ console.log(dataUri)
 ```
 
 3. Create a QR code image, e.g. with the `qrencode` command line tool, e.g. `qrencode -o ~/Downloads/qr-flashcards.png '<paste data uri here>'`
+
+## Say Cheese! project description
+
+```plain
+Need to get some revision done on the go? Enjoy using apps contained within QR codes? Take a look at QR flashcards :D
+
+What does it do?
+- You can add flashcards
+- You can view the flashcards
+- 3 virtual boxes for your flashcards
+- Flashcards move through the boxes using the Leitner system, very fancy
+
+Any important limitations?
+- I'm glad you asked!
+- Sadly, localStorage can't be used in this context, so your flashcards aren't saved
+- In other words, all your work gets lost if you reload the page
+- But, perhaps the real flashcards are the key words that we learnt along the way
+```
