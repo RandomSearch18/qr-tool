@@ -1,6 +1,10 @@
 # QR Flashcards
 
-This is a basic flashcards app, built to be small enough that all of its code fits within a single QR code.
+> A tiny (<1KB) Leitner box/flashcards web app
+
+This is a basic flashcards app, that supports the Leitner system, and is built to be small enough that all of its code fits within a single QR code.
+
+As of 2025-01-15, the minified `index.html` file (which contains all the resources needed to run the app) is 969 bytes.
 
 ## Usage guide
 
@@ -34,6 +38,10 @@ The middle section of the app is where you view flashcards, one at a time. The b
 #### At the end of a box
 
 If you've gone through all of the flashcards in a box and emptied it out, an "End of box" popup will show. You can either press "OK" to refresh the page to study another box, or press "Cancel" to keep the empty box selected, after which you can either manually select another box, or finish studying.
+
+## Screenshots
+
+![A screenshot of the (very basic) UI for the web app](screenshot.png)
 
 ## Features of the code
 
