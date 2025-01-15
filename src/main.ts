@@ -13,26 +13,29 @@ let box = 0
 let currentCard: number
 
 /**
- * Render a card to the DOM
- * @param i Index of the card
+ * Render the next card (database[currentCard + 1]), and updates `currentCard`
  * @returns `undefined` if the card **was** shown without any errors, or `0` if the card doesn't exist
  */
-const showCard = (i: number): 0 | undefined => {
-  // Bug: The case of currentCard > database[box].length isn't handled
-  $("h2").textContent = `Box ${box + 1}: Card ${i + 1}/${database[box].length}`
-  if (!database[box][i]) {
+const nextCard = (): 0 | undefined => {
+  // Note: The case of currentCard > database[box].length (i.e. end of box) is handled in window.n()
+  currentCard++
+  $("h2").textContent = `Box ${box + 1}: Card ${currentCard + 1}/${
+    database[box].length
+  }`
+  if (!database[box][currentCard]) {
     $("p").textContent = "Empty box"
     return 0
   }
-  $("p").textContent = database[box][i][0]
-  currentCard = i
+  $("p").textContent = database[box][currentCard][0]
 }
 
 // @ts-ignore `b` for "box dropdown changed"
 window.b = () => {
   box = parseInt($<HTMLSelectElement>("select").value) - 1
   // If there are cards in the box, show the first one
-  showCard(0)
+  // -1 so that when we first call showCard, it'll increment snowCard and show the first card
+  currentCard = -1
+  nextCard()
 }
 
 // We show the first card in the box that happens to be selected on page load (which is normally box 1, unless the browser is filling it from a previous page load)
@@ -65,7 +68,7 @@ window.n = (offset: number) => {
   )
   database[box].splice(currentCard, 1)
   localStorage.setItem("db", JSON.stringify(database))
-  const cardOffset = showCard(currentCard + 1) ?? -1
+  const cardOffset = nextCard() ?? -1
   if (currentCard + 1 + cardOffset >= database[box].length) {
     confirm(`End of box ${box + 1}. Restart?`) && location.reload()
   }
