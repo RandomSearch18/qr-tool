@@ -14,11 +14,11 @@ let box = 0
  * Render the first card in the current box
  * @returns `undefined` if the card **was** shown without any errors, or `0` if the card doesn't exist
  */
-let renderCard = (): 0 | undefined => {
+let renderCard = () => {
   $("h2").textContent = `Box ${box + 1} (${database[box].length} cards)`
   if (!database[box][0]) {
     $("p").textContent = "Empty box"
-    return 0
+    return
   }
   $("p").textContent = database[box][0][0]
 }
@@ -61,8 +61,8 @@ self.n = (offset: number) => {
   database[newBox].push(database[box][0])
   database[box].shift()
   saveDatabase()
-  let cardOffset = renderCard() ?? -1
-  if (1 + cardOffset > database[box].length) {
+  renderCard()
+  if (!database[box].length) {
     confirm("End of box. Restart?") && reload()
   }
 }
