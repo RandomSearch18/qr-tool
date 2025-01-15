@@ -48,9 +48,9 @@ self.p = () => {
   reload()
 }
 
-// @ts-ignore
+// @ts-ignore `s` for "show answer"
 self.s = () => {
-  // Callback for when the "Show" (show answer) button is clicked
+  // Callback for when the book emoji (show answer) button is clicked
   $("p").textContent = database[box][0][1]
 }
 
