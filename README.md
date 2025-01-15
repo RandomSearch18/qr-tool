@@ -10,4 +10,4 @@ Here's some of the fun features of this code, done in the name of minification (
 - 🎉 Impure functions!
   - Side effects my beloved 😍
 - 🎉 A variable called `$`!
-  - It's like jQuery, but without the jQuery!
+  - You can think of it like jQuery, but without the jQuery
