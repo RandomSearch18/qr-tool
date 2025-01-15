@@ -26,7 +26,8 @@ const renderCard = (): 0 | undefined => {
 
 // @ts-ignore `b` for "box dropdown changed"
 self.b = () => {
-  box = parseInt($<HTMLSelectElement>("select").value) - 1
+  // @ts-ignore
+  box = $<HTMLSelectElement>("select").value - 1
   // If there are cards in the box, show the first one
   // -1 so that when we first call showCard, it'll increment snowCard and show the first card
   renderCard()
