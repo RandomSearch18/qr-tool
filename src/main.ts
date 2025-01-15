@@ -4,9 +4,9 @@ let $ = <T extends Element>(selector: string) =>
   document.querySelector<T>(selector)
 let reload = () => location.reload()
 
-let database: Card[][] = JSON.parse(localStorage.getItem("db") || "[[],[],[]]")
+let database: Card[][] = JSON.parse(localStorage.getItem("d") || "[[],[],[]]")
 
-let saveDatabase = () => localStorage.setItem("db", JSON.stringify(database))
+let saveDatabase = () => localStorage.setItem("d", JSON.stringify(database))
 
 let box = 0
 
