@@ -18,7 +18,7 @@ let currentCard: number
  */
 const nextCard = (doIncrement = 1): 0 | undefined => {
   // Note: The case of currentCard > database[box].length (i.e. end of box) is handled in self.n()
-  doIncrement && currentCard++
+  // doIncrement && currentCard++
   $("h2").textContent = `Box ${box + 1}: Card ${currentCard + 1}/${
     database[box].length
   }`
@@ -34,7 +34,7 @@ self.b = () => {
   box = parseInt($<HTMLSelectElement>("select").value) - 1
   // If there are cards in the box, show the first one
   // -1 so that when we first call showCard, it'll increment snowCard and show the first card
-  currentCard = -1
+  currentCard = 0
   nextCard()
 }
 
