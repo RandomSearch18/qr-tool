@@ -55,7 +55,7 @@ self.n = (offset: number) => {
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
   // If card is in the last box (index 2), keep it in there
   let newBox = Math.min((box + offset) * offset, 2)
-  database[newBox].push(database[box][0])
+  database[box][0] && database[newBox].push(database[box][0])
   database[box].shift()
   saveDatabase()
   renderCard()
