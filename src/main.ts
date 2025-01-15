@@ -2,6 +2,7 @@ type Card = [string, string]
 
 const $ = <T extends Element>(selector: string) =>
   document.querySelector<T>(selector)
+const reload = () => location.reload()
 
 const database: Card[][] = JSON.parse(
   localStorage.getItem("db") || "[[],[],[]]"
@@ -44,7 +45,7 @@ self.p = () => {
   const answer = $<HTMLTextAreaElement>("#a").value
   database[0].push([question, answer])
   saveDatabase()
-  location.reload()
+  reload()
 }
 
 // @ts-ignore
@@ -64,6 +65,6 @@ self.n = (offset: number) => {
   saveDatabase()
   const cardOffset = renderCard() ?? -1
   if (1 + cardOffset >= database[box].length) {
-    confirm(`End of box ${box + 1}. Restart?`) && location.reload()
+    confirm(`End of box ${box + 1}. Restart?`) && reload()
   }
 }
