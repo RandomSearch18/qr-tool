@@ -5,7 +5,7 @@ let $ = <T extends Element>(selector: string) =>
 let reload = () => location.reload()
 
 let database: Card[][] = JSON.parse(localStorage.getItem("d") || "[[],[],[]]")
-
+let currentCard = () => database[box][0]
 let saveDatabase = () => localStorage.setItem("d", JSON.stringify(database))
 
 let box = 0
@@ -16,8 +16,8 @@ let box = 0
  */
 let renderCard = () => {
   $("h2").textContent = `Box ${box + 1} (${database[box].length} cards)`
-  database[box][0]
-    ? ($("p").textContent = database[box][0][0])
+  currentCard()
+    ? ($("p").textContent = currentCard()[0])
     : ($("p").textContent = "Empty box")
 }
 
@@ -47,7 +47,7 @@ self.p = () => {
 // @ts-ignore `s` for "show answer"
 self.s = () =>
   // Callback for when the book emoji (show answer) button is clicked
-  ($("p").textContent = database[box][0][1])
+  ($("p").textContent = currentCard()[1])
 
 // @ts-ignore `n` for "next card"
 self.n = (offset: number) => {
@@ -55,7 +55,7 @@ self.n = (offset: number) => {
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
   // If card is in the last box (index 2), keep it in there
   let newBox = Math.min((box + offset) * offset, 2)
-  database[box][0] && database[newBox].push(database[box][0])
+  currentCard() && database[newBox].push(currentCard())
   database[box].shift()
   saveDatabase()
   renderCard()
