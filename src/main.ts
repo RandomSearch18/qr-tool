@@ -16,11 +16,9 @@ let box = 0
  */
 let renderCard = () => {
   $("h2").textContent = `Box ${box + 1} (${database[box].length} cards)`
-  if (!database[box][0]) {
-    $("p").textContent = "Empty box"
-    return
-  }
-  $("p").textContent = database[box][0][0]
+  database[box][0]
+    ? ($("p").textContent = database[box][0][0])
+    : ($("p").textContent = "Empty box")
 }
 
 // @ts-ignore `b` for "box dropdown changed"
