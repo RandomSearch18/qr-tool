@@ -17,7 +17,7 @@ let currentCard: number
  * @returns `undefined` if the card **was** shown without any errors, or `0` if the card doesn't exist
  */
 const nextCard = (): 0 | undefined => {
-  // Note: The case of currentCard > database[box].length (i.e. end of box) is handled in window.n()
+  // Note: The case of currentCard > database[box].length (i.e. end of box) is handled in self.n()
   currentCard++
   $("h2").textContent = `Box ${box + 1}: Card ${currentCard + 1}/${
     database[box].length
@@ -30,7 +30,7 @@ const nextCard = (): 0 | undefined => {
 }
 
 // @ts-ignore `b` for "box dropdown changed"
-window.b = () => {
+self.b = () => {
   box = parseInt($<HTMLSelectElement>("select").value) - 1
   // If there are cards in the box, show the first one
   // -1 so that when we first call showCard, it'll increment snowCard and show the first card
@@ -40,10 +40,10 @@ window.b = () => {
 
 // We show the first card in the box that happens to be selected on page load (which is normally box 1, unless the browser is filling it from a previous page load)
 // @ts-ignore
-window.b()
+self.b()
 
 // @ts-ignore `p` for "plus button callback"
-window.p = () => {
+self.p = () => {
   // Callback for when the "+" (add card) button is clicked
   const question = $<HTMLTextAreaElement>("#q").value
   const answer = $<HTMLTextAreaElement>("#a").value
@@ -53,13 +53,13 @@ window.p = () => {
 }
 
 // @ts-ignore
-window.s = () => {
+self.s = () => {
   // Callback for when the "Show" (show answer) button is clicked
   $("p").textContent = database[box][currentCard][1]
 }
 
 // @ts-ignore `n` for "next card"
-window.n = (offset: number) => {
+self.n = (offset: number) => {
   // Callback for the red X and checkmark buttons
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
   // If card is in the last box (index 2), keep it in there
