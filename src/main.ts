@@ -63,12 +63,11 @@ self.n = (offset: number) => {
   // Callback for the red X and checkmark buttons
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
   // If card is in the last box (index 2), keep it in there
-  const newBox = Math.min((box + offset) * offset, 2)
-  if (newBox - box) {
-    database[newBox].push(database[box][currentCard])
-    database[box].splice(currentCard, 1)
-    localStorage.setItem("db", JSON.stringify(database))
-  }
+  database[Math.min((box + offset) * offset, 2)].push(
+    database[box][currentCard]
+  )
+  database[box].splice(currentCard, 1)
+  localStorage.setItem("db", JSON.stringify(database))
   const cardOffset = nextCard() ?? -1
   if (currentCard + 1 + cardOffset >= database[box].length) {
     confirm(`End of box ${box + 1}. Restart?`) && location.reload()
