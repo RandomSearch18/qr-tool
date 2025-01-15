@@ -64,7 +64,7 @@ self.n = (offset: number) => {
   database[box].shift()
   saveDatabase()
   const cardOffset = renderCard() ?? -1
-  if (1 + cardOffset >= database[box].length) {
+  if (1 + cardOffset > database[box].length) {
     confirm(`End of box ${box + 1}. Restart?`) && reload()
   }
 }
