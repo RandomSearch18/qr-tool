@@ -45,10 +45,9 @@ self.p = () => {
 }
 
 // @ts-ignore `s` for "show answer"
-self.s = () => {
+self.s = () =>
   // Callback for when the book emoji (show answer) button is clicked
-  $("p").textContent = database[box][0][1]
-}
+  ($("p").textContent = database[box][0][1])
 
 // @ts-ignore `n` for "next card"
 self.n = (offset: number) => {
