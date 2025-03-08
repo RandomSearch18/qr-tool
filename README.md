@@ -2,6 +2,8 @@
 
 > A Leitner box/flashcards web app that can entirely fit on a QR code
 
+**📖 [Skip to the usage guide](#usage-guide)**
+
 This is a basic flashcards app, that supports the Leitner system, and is built to be small enough that all of its code fits within a single QR code.
 
 This project was made for a Hack Club project called [Say Cheese!](https://saycheese.hackclub.com/). If you're a teenager who likes to code, you should definitely take a look at what Hack Club does.
