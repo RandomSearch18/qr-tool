@@ -17,8 +17,8 @@ let renderCard = () => {
   let card = currentCard()
   card ? ($("p").textContent = card[0]) : ($("p").textContent = "Empty box")
   card
-    ? ($<HTMLAnchorElement>("a a").style.display = "")
-    : ($<HTMLAnchorElement>("a a").style.display = "none")
+    ? ($<HTMLAnchorElement>("a+a").style.display = "")
+    : ($<HTMLAnchorElement>("a+a").style.display = "none")
 }
 
 // @ts-ignore `b` for "box dropdown changed"
