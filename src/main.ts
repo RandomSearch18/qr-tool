@@ -54,7 +54,8 @@ self.n = (offset: number) => {
   // Callback for the red X and checkmark buttons
   // If offset is 0, move the card all the way down. If offset is 1, move the card to the next box
   // If card is in the last box (index 2), keep it in there
-  let newBox = Math.min((box + offset) * offset, 2)
+  let newBox = (box + offset) * offset
+  newBox = newBox < 3 ? newBox : 2 // newBox = min(newBox, 2)
   currentCard() && database[newBox].push(currentCard())
   database[box].shift()
   renderCard()
