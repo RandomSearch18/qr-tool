@@ -1,6 +1,22 @@
 <meta charset="UTF-8" /><style>
   * {
     color-scheme: light dark;
+    font-family: sans-serif;
+  }
+  p {
+    max-width: 26em;
+    background: #01051770;
+    border-radius: 9px;
+    padding: 1em 2em;
+  }
+  a + a {
+    display: flex;
+    width: 26em;
+    justify-content: center;
+    gap: 1em;
+  }
+  button {
+    font-size: 1.4em;
   }
 </style>
 Box
@@ -11,14 +27,16 @@ Box
 </select>
 <hr />
 <a>
-  <h2></h2>
-  <p></p>
+  <div>
+    <h2></h2>
+    <p></p>
+  </div>
   <a>
     <button onclick="s()">📖</button><button onclick="n(1)">✅</button
     ><button onclick="n(0)">❌</button>
   </a>
-  <hr />
 </a>
+<hr />
 🆕<textarea id="q">Q</textarea><textarea id="a">A</textarea
 ><button onclick="p()">+</button>
 
