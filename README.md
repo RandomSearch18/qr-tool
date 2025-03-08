@@ -8,7 +8,7 @@ This is a basic flashcards app, that supports the Leitner system, and is built t
 
 This project was made for a Hack Club project called [Say Cheese!](https://saycheese.hackclub.com/). If you're a teenager who likes to code, you should definitely take a look at what Hack Club does.
 
-As of 2025-03-08, the minified `index.html` file (which contains all the resources needed to run the app) is 897 bytes. (Note: this may be inaccurate, as the app is being updated on this branch.)
+As of 2025-03-08, the minified `index.html` file (which contains all the resources needed to run the app) is 856 bytes. (Note: this may be inaccurate, as the app is being updated on this branch.)
 
 ## Run the app
 

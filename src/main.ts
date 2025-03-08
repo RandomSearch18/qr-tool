@@ -17,9 +17,8 @@ let renderCard = () => {
   currentCard()
     ? ($("p").textContent = currentCard()[0])
     : ($("p").textContent = "Empty box")
-  currentCard()
-    ? ($<HTMLAnchorElement>("a+a").style.display = "")
-    : ($<HTMLAnchorElement>("a+a").style.display = "none")
+  // Hide the card-specific buttons if there aren't any cards
+  $<HTMLAnchorElement>("a+a").hidden = !currentCard()
 }
 
 // @ts-ignore `b` for "box dropdown changed"
