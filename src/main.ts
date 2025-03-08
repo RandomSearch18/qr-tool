@@ -14,9 +14,10 @@ let box = 0
  */
 let renderCard = () => {
   $("h2").textContent = `Box ${box + 1} (${database[box].length} cards)`
-  let card = currentCard()
-  card ? ($("p").textContent = card[0]) : ($("p").textContent = "Empty box")
-  card
+  currentCard()
+    ? ($("p").textContent = currentCard()[0])
+    : ($("p").textContent = "Empty box")
+  currentCard()
     ? ($<HTMLAnchorElement>("a+a").style.display = "")
     : ($<HTMLAnchorElement>("a+a").style.display = "none")
 }
