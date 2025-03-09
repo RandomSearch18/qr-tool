@@ -10,11 +10,12 @@
     padding: 1em 2em;
     box-shadow: 0 0 1em 0.5em #00000050;
   }
-  a + a {
-    display: flex;
-    width: 26em;
-    justify-content: center;
-    gap: 1em;
+  nav {
+    text-align: center;
+    max-width: 26em;
+    & > * {
+      margin: 0 8px;
+    }
   }
   button {
     font-size: 1.4em;
@@ -32,10 +33,11 @@ Box
     <h2></h2>
     <p></p>
   </div>
-  <a>
+  <!-- We're abusing the nav element here, because a short unique tag is helpful, and it has to be a block element. -->
+  <nav>
     <button onclick="s()">📖</button><button onclick="n(1)">✅</button
     ><button onclick="n(0)">❌</button>
-  </a>
+  </nav>
 </a>
 <hr />
 <h2>Add card</h2>
