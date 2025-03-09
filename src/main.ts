@@ -16,7 +16,7 @@ let renderCard = () => {
   $("h2").textContent = `Box ${box + 1} (${database[box].length} cards)`
   currentCard()
     ? ($("p").textContent = currentCard()[0])
-    : ($("p").textContent = "Empty box")
+    : ($("p").textContent = "Empty box! Add a card below.")
   // Hide the card-specific buttons if there aren't any cards
   $<HTMLAnchorElement>("nav").hidden = !currentCard()
 }
