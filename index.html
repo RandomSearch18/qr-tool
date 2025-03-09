@@ -17,17 +17,20 @@
       margin: 0 8px;
     }
   }
-  button {
+  button,
+  select {
     font-size: 1.4em;
   }
+  textarea {
+    width: 480;
+  }
 </style>
-Box
+Select box
 <select onchange="b()">
   <option>1</option>
   <option>2</option>
   <option>3</option>
 </select>
-<hr />
 <a>
   <div>
     <h2></h2>
@@ -39,7 +42,6 @@ Box
     ><button onclick="n(0)">❌</button>
   </nav>
 </a>
-<hr />
 <h2>Add card</h2>
 <textarea id="q">Q</textarea><br /><textarea id="a">A</textarea><br /><button
   onclick="p()"
