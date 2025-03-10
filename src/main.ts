@@ -59,6 +59,6 @@ self.n = (offset: number) => {
   database[box].shift()
   renderCard()
   if (!database[box].length) {
-    alert("End of box")
+    alert("End of box! Select another box at the top to keep studying")
   }
 }
