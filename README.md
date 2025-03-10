@@ -110,3 +110,7 @@ Any important limitations?
 - In other words, all your work gets lost if you reload the page
 - But, perhaps the real flashcards are the key words that we learnt along the way
 ```
+
+## Development notes
+
+We can't use native CSS nesting in our CSS, because it [is not supported](https://github.com/terser/html-minifier-terser/issues/177) by `html-minifier-terser` (which is used by `vite-plugin-html`). The actual upstream bug is [clean-css issue #1254](https://github.com/clean-css/clean-css/issues/1254)
