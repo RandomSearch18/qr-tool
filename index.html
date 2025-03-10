@@ -4,7 +4,7 @@
     font-family: sans-serif;
   }
   p {
-    max-width: 26em;
+    max-width: 30em;
     background: #01051740;
     border-radius: 9px;
     padding: 1em 2em;
@@ -12,7 +12,7 @@
   }
   nav {
     text-align: center;
-    max-width: 26em;
+    max-width: 30em;
     & > * {
       margin: 0 8px;
     }
@@ -26,6 +26,8 @@
   }
 </style>
 <h1>Leitner box flashcards</h1>
+Flashcards start at Box 1, move up if you answer them correctly, and move back
+to Box 1 if you get them wrong.<br />
 Select box
 <select onchange="b()">
   <option>1</option>
@@ -39,8 +41,9 @@ Select box
   </div>
   <!-- We're abusing the nav element here, because a short unique tag is helpful, and it has to be a block element. -->
   <nav>
-    <button onclick="s()">📖</button><button onclick="n(1)">✅</button
-    ><button onclick="n(0)">❌</button>
+    <button onclick="s()">📖 Check answer</button
+    ><button onclick="n(1)">✅ Correct</button
+    ><button onclick="n(0)">❌ Wrong</button>
   </nav>
 </a>
 <h2>Add card</h2>
