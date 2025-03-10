@@ -24,7 +24,7 @@ If you insist on running the app without a QR code, you can use it online by vis
 
 ### Adding flashcards
 
-Start off by adding some flashcards. This can be done in the bottom section of the app (with a 🆕 emoji). Write a question in the first text box, and its answer in the second text box. Then press the "+" button to add your flashcard to the database. This will refresh the page.
+Start off by adding some flashcards. This can be done in the bottom section of the app (with a 🆕 emoji). Write a question in the first text box, and its answer in the second text box. Then press the "+" button to add your flashcard to the database.
 
 You can add flashcards at any time.
 
